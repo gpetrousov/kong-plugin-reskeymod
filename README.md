@@ -17,7 +17,9 @@ curl -i -X POST --url http://localhost:8001/services/example-service/routes --da
 #### Enabling the plugin
 
 ```
-curl -X POST --url http://localhost:8001/services/example-service/plugins/ --data 'name=reskeymod' --data "config.rename_body_key.json=userId:uID" | jq
+curl -X POST --url http://localhost:8001/services/example-service/plugins/ --data 'name=reskeymod' --data "config.rename_body_key.json=userId:uID" --data "config.rename_body_key.json=com
+pleted:done" 
+
 ```
 
 #### Original response
@@ -39,12 +41,11 @@ curl -X GET --url http://localhost:8000/test | jq
 ```
 curl -X GET "http://localhost:8000/test" | jq
 
-
 {
-  "id": 1,
+  "done": false,
   "title": "delectus aut autem",
   "uID": 1,
-  "completed": false
+  "id": 1
 }
 
 ```
