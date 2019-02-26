@@ -12,7 +12,7 @@ local colon_string_record = {
 }
 
 return {
-  name = "response-key-transformer",
+  name = "reskeymod",
   fields = {
     { config = {
         type = "record",
@@ -23,6 +23,3 @@ return {
     },
   },
 }
-
--- Accessing the fields from handler
--- config.rename_body_key.json

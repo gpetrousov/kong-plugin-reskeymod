@@ -21,7 +21,8 @@ local function rename_body_key(body, old_key_name, new_key_name)
 		body[new_key_name] = key_value
 	  return body
 	else
-		print("No body, or body is encrypted")
+    print("No body, or body is encrypted")
+    print("Set accept-encoding to 0")
 		return
   end
 end
@@ -57,7 +58,7 @@ local function iter(config_array)
 end
 
 
-function _M.transform_json_body(conf, buffered_data)
+function _M.modify_json_body(conf, buffered_data)
   local json_body = read_json_body(buffered_data)
 
   if json_body == nil then
@@ -65,6 +66,7 @@ function _M.transform_json_body(conf, buffered_data)
     return
   end
 
+  -- print("The body is: ", json_body)
 	-- rename JSON keys from body
   for _, name, value in iter(conf.rename_body_key.json) do
     local v = cjson.encode(value)
@@ -74,6 +76,8 @@ function _M.transform_json_body(conf, buffered_data)
     v = v and gsub(v, [[\/]], [[/]]) -- To prevent having double encoded slashes
 		rename_body_key(json_body, name, v)
   end
+
+  print("Returning body")
 
   return cjson.encode(json_body)
 end
