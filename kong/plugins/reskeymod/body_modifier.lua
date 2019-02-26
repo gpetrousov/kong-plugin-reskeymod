@@ -66,8 +66,6 @@ function _M.modify_json_body(conf, buffered_data)
     return
   end
 
-  -- print("The body is: ", json_body)
-	-- rename JSON keys from body
   for _, name, value in iter(conf.rename_body_key.json) do
     local v = cjson.encode(value)
     if v and sub(v, 1, 1) == [["]] and sub(v, -1, -1) == [["]] then
@@ -76,8 +74,6 @@ function _M.modify_json_body(conf, buffered_data)
     v = v and gsub(v, [[\/]], [[/]]) -- To prevent having double encoded slashes
 		rename_body_key(json_body, name, v)
   end
-
-  print("Returning body")
 
   return cjson.encode(json_body)
 end

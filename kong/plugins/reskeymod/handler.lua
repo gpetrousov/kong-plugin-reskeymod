@@ -30,7 +30,6 @@ function ResKeyModHandler:body_filter(conf)
   ResKeyModHandler.super.body_filter(self)
 
   if is_body_transform_set(conf) and is_json_body(kong.response.get_header("Content-Type")) then
-    print("HHHHHHHEEEEEEEEEEEEELLLLLLLLLLLLOOOOOOOOOOOOOOOOOOO!!!!!!!!!!!!!")
     local ctx = ngx.ctx
     local chunk, eof = ngx.arg[1], ngx.arg[2]
 
@@ -38,7 +37,6 @@ function ResKeyModHandler:body_filter(conf)
     ctx.rt_body_chunk_number = ctx.rt_body_chunk_number or 1
 
     if eof then
-      print("calling body modifier now")
       local chunks = concat(ctx.rt_body_chunks)
       local body = body_modifier.modify_json_body(conf, chunks)
       ngx.arg[1] = body or chunks
