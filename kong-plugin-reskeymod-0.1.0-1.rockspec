@@ -11,7 +11,7 @@ local pluginName = package:match("^kong%-plugin%-(.+)$")  -- "myPlugin"
 
 supported_platforms = {"linux", "macosx"}
 source = {
-  url = "https://github.com/thg303/kong-plugin-reskeymod.git",
+  url = "https://github.com/gpetrousov/kong-plugin-reskeymod.git",
   branch = "master",
 --  tag = "0.1.0"
 -- hint: "tag" could be used to match tag in the repository
